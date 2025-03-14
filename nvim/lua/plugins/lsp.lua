@@ -214,13 +214,13 @@ return { -- LSP Configuration & Plugins
 				root_dir = function(fname)
 					return require("lspconfig.util").root_pattern(
 						"Makefile",
+						"Kconfig",
 						"configure.ac",
 						"configure.in",
 						"config.h.in",
 						"meson.build",
 						"meson_options.txt",
-						"build.ninja"
-					)(fname) or require("lspconfig.util").root_pattern(
+						"build.ninja",
 						"compile_commands.json",
 						"compile_flags.txt"
 					)(fname) or require("lspconfig.util").find_git_ancestor(fname)
@@ -232,10 +232,11 @@ return { -- LSP Configuration & Plugins
 					"clangd",
 					"--background-index",
 					"--clang-tidy",
-					"--header-insertion=iwyu",
+					"--header-insertion=never",
 					"--completion-style=detailed",
 					"--function-arg-placeholders",
 					"--fallback-style=llvm",
+					-- "--compile-commands-dir=/home/anima/Anima/ldd/download/elinux"
 				},
 				init_options = {
 					usePlaceholders = true,
